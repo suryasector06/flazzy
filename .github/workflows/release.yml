@@ -34,10 +34,10 @@ jobs:
         run: poetry install
 
       - name: Lint with black
-        run: poetry run black --check src/ test/
+        run: poetry run black .
 
       - name: Lint with isort
-        run: poetry run isort --check-only src/ test/
+        run: poetry run isort .
 
       - name: Run tests
         run: poetry run pytest
