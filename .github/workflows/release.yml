@@ -31,7 +31,7 @@ jobs:
         run: poetry config virtualenvs.create false
 
       - name: Install dependencies
-        run: poetry install --all-extras
+        run: poetry install
 
       - name: Lint with black
         run: poetry run black --check src/ test/
