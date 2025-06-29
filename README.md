@@ -105,11 +105,11 @@ Contributions, issues, and feature requests are welcome!
 - Create a new branch for your changes
 - Submit a pull request
 
-💬 Feel free to open issues or discussions on [GitHub Repository](https://github.com/username/flazzy)
+💬 Feel free to open issues or discussions on [GitHub Repository](https://github.com/suryasector06/flazzy)
 
 ---
 
 ## 🔗 Related Links
 
 - 📦 PyPI: [https://pypi.org/project/flazzy/](https://pypi.org/project/flazzy/)
-- 💻 Source Code: [https://github.com/suryacluster06/flazzy](https://github.com/suryacluster06/flazzy)
+- 💻 Source Code: [https://github.com/suryacluster06/flazzy](https://github.com/suryasector06/flazzy)
