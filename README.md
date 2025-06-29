@@ -1,4 +1,4 @@
-# Flazzy - Currency CLI Tool 💱
+# Flazzy - Currency CLI Tool
 
 **Flazzy** is a simple and powerful Command-Line Interface (CLI) tool that allows you to check real-time currency exchange rates and perform currency conversions directly from your terminal.
 
