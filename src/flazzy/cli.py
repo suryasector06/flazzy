@@ -150,7 +150,7 @@ def chart(from_curr: str, to_curr: str, bk_date: int):
 
     from_date = date.today() - timedelta(days=bk_date)
     data = fetch_rates_by_date_range(
-        from_curr, to_curr, from_date.isoformat(), date.today().isoformat()
+        from_curr.upper(), to_curr.upper(), from_date.isoformat(), date.today().isoformat()
     )
 
     with console.status("Fetch data from API...", spinner="line"):
