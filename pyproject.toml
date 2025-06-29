@@ -16,7 +16,8 @@ dependencies = [
     "rich >=14.0.0,<15.0.0",
     "click >=8.2.1,<9.0.0",
     "requests >=2.32.4,<3.0.0",
-    "matplotlib >=3.10.3,<4.0.0"
+    "matplotlib >=3.10.3,<4.0.0",
+    "pytest-sugar (>=1.0.0,<2.0.0)"
 ]
 
 classifiers = [
@@ -57,6 +58,6 @@ pytest = "^8.4.1"
 
 [tool.pytest.ini_options]
 minversion = "7.5"
-addopts = "--tb=short --rich"
+addopts = "--tb=short"
 testpaths = ["test"]
 
