@@ -15,10 +15,10 @@ def display_currency_table(
 
     for from_currency, to_currency, rate in pairs:
         console.print(
-            f"[bold cyan] 1.00000"
+            f"[bold cyan] 1.00"
             f"[bold cyan]{from_currency.upper()}[/bold cyan] "
             f"[bold white]→[/bold white] "
-            f"[bold green]{rate:.5f} {to_currency.upper()}[/bold green] "
+            f"[bold green]{rate:.2f} {to_currency.upper()}[/bold green] "
             f"in {to_date}"
         )
 
@@ -34,7 +34,7 @@ def display_conversion(
         to_date = date.today().isoformat()
 
     console.print(
-        f"[bold cyan]{amount:.5f} {from_curr.upper()}[/bold cyan] [bold white]→[/bold white] [bold green]{result:.2f} {to_curr.upper()}[/bold green] in {to_date}"
+        f"[bold cyan]{amount:.2f} {from_curr.upper()}[/bold cyan] [bold white]→[/bold white] [bold green]{result:.2f} {to_curr.upper()}[/bold green] in {to_date}"
     )
 
 
