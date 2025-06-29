@@ -1,0 +1,60 @@
+[project]
+name = "flazzy"
+version = "0.1.0"
+description = "A command-line tool to check and convert currency rates."
+authors = [
+    {name = "surya",email = "surya.a@tutamail.com"}
+]
+packages = [{ include = "module", from = "src" }]
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "rich (>=14.0.0,<15.0.0)",
+    "click (>=8.2.1,<9.0.0)",
+    "requests (>=2.32.4,<3.0.0)",
+    "matplotlib (>=3.10.3,<4.0.0)",
+]
+include = [
+    "README.md",
+    "LICENSE",
+    "pyproject.toml"
+]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+    "License :: OSI Approved :: GNU Lesser General Public License v3 or later (LGPLv3+)",
+    "Topic :: Utilities",
+    "Environment :: Console"
+]
+license = "LGPL-2.1-or-later"
+
+[project.uri]
+Homepage = "https://github.com/suryacluster06/flazzy"
+Repository = "https://github.com/suryacluster06/flazzy"
+Documentation = ""
+
+[tool.poetry.dependencies]
+python = ">=3.12, <4.0.0"
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[project.scripts]
+flazzy = "flazzy.cli:cli"
+
+[tool.poetry.group.dev.dependencies]
+black = "^25.1.0"
+isort = "^6.0.1"
+pyright = "^1.1.402"
+
+
+[tool.poetry.group.test.dependencies]
+pytest = "^8.4.1"
+
+[tool.pytest.ini_option]
+minversion = "7.5"
+addopts = "--tb=short --rich"
+testpath = [
+    "test",
+]
