@@ -113,7 +113,7 @@ def rates(to_date: str, currency: str):
     is provided, it defaults to 'USD'.
 
     Example:
-        flazzy rates -c EUR
+        flazzy rates --base EUR
     """
     data = fetch_rates_for_currency(currency.upper(), to_date)
     pairs = generate_exchange_pairs(data)
