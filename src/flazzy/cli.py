@@ -46,7 +46,7 @@ def cli():
 )
 @click.option(
     "-f",
-    "--from-curr",
+    "--from",
     "from_curr",
     type=str,
     required=True,
@@ -54,15 +54,15 @@ def cli():
 )
 @click.option(
     "-t",
-    "--to-curr",
+    "--to",
     "to_curr",
     type=str,
     required=True,
     help="The target currency code (e.g., IDR).",
 )
 @click.option(
+    "-d",
     "--date",
-    "--to-date",
     "to_date",
     type=str,
     show_default=True,
@@ -89,7 +89,7 @@ def exchange(amount: float, from_curr: str, to_curr: str, to_date: str):
 @cli.command()
 @click.option(
     "--currency",
-    "-c",
+    "--base",
     type=str,
     default="USD",
     show_default=True,
@@ -129,8 +129,8 @@ def rates(to_date: str, currency: str):
 @click.argument("from_curr", type=str)
 @click.argument("to_curr", type=str)
 @click.option(
-    "--back",
-    "--back-date",
+    "--days",
+    "--back-days",
     "bk_date",
     type=int,
     required=True,
@@ -145,7 +145,7 @@ def chart(from_curr: str, to_curr: str, bk_date: int):
     number of past days, then renders a chart using Rich.
 
     Example usage:
-        flazzy chart USD EUR --back 30
+        flazzy chart USD EUR --days 30
     """
 
     from_date = date.today() - timedelta(days=bk_date)
