@@ -1,6 +1,7 @@
 import os
-import matplotlib.pyplot as plt
 from datetime import datetime
+
+import matplotlib.pyplot as plt
 from rich.console import Console
 
 from .utils import compute_percentage_changes, smooth_rates
