@@ -22,6 +22,8 @@ def fetch_exchange_rates(from_curr: str, to_curr: str, to_date: str):
         return data["rates"]
     except requests.exceptions.RequestException as e:
         raise click.UsageError(f"Failed to contact API: {e}")
+    except Exception as e:
+        raise click.UsageError(f"Internal error: {e}")
 
 
 def fetch_rates_for_currency(currency: str, to_date: str):
@@ -39,6 +41,8 @@ def fetch_rates_for_currency(currency: str, to_date: str):
         return data
     except requests.exceptions.RequestException as e:
         raise click.UsageError(f"Failed to contact API: {e}")
+    except Exception as e:
+        raise click.UsageError(f"Internal error: {e}")
 
 
 def fetch_rates_by_date_range(
@@ -58,6 +62,8 @@ def fetch_rates_by_date_range(
         return data["rates"]
     except requests.exceptions.RequestException as e:
         raise click.UsageError(f"Failed to contact API: {e}")
+    except Exception as e:
+        raise click.UsageError(f"Internal error: {e}")
 
 
 def fetch_list_currencies():
@@ -73,3 +79,5 @@ def fetch_list_currencies():
         return data
     except requests.exceptions.RequestException as e:
         raise click.UsageError("Failed to contact API: {e}")
+    except Exception as e:
+        raise click.UsageError(f"Internal error: {e}")

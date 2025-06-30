@@ -1,30 +1,22 @@
-from time import sleep
 from datetime import date, timedelta
+from time import sleep
 
 import click
 from rich.console import Console
 from rich.spinner import Spinner
 
+from .api import (fetch_exchange_rates, fetch_list_currencies,
+                  fetch_rates_by_date_range, fetch_rates_for_currency)
+from .converter import convert_currency, generate_exchange_pairs, swap_currency
 from .plot import generate_and_save_currency_plot
-from .utils import (
-    display_conversion,
-    display_currencies,
-    display_currency_table,
-)
-
-from .api import (
-    fetch_exchange_rates,
-    fetch_list_currencies,
-    fetch_rates_by_date_range,
-    fetch_rates_for_currency,
-)
-from .converter import convert_currency, generate_exchange_pairs
+from .utils import (display_conversion, display_currencies,
+                    display_currency_table)
 
 console = Console()
 
 
 @click.group()
-@click.version_option("0.2.0", prog_name="Flazzy")
+@click.version_option("0.2.1", prog_name="Flazzy")
 def cli():
     """
     Currency CLI Application.
@@ -69,7 +61,8 @@ def cli():
     default="latest",
     help="The date of the exchange rate (format: YYYY-MM-DD).",
 )
-def exchange(amount: float, from_curr: str, to_curr: str, to_date: str):
+@click.option("--swap", is_flag=True)
+def exchange(amount: float, from_curr: str, to_curr: str, to_date: str, swap: bool):
     """
     Convert a specific amount from one currency to another using real-time exchange rates.
 
@@ -79,6 +72,14 @@ def exchange(amount: float, from_curr: str, to_curr: str, to_date: str):
 
     rates = fetch_exchange_rates(from_curr.upper(), to_curr.upper(), to_date)
     result = convert_currency(amount, from_curr.upper(), to_curr.upper(), rates)
+
+    if swap:
+        swap_result = swap_currency(amount, from_curr.upper(), to_curr.upper(), rates)
+
+        display_conversion(amount, from_curr, to_curr, result, to_date)
+        display_conversion(amount, to_curr, from_curr, swap_result, to_date)
+
+        return
 
     with console.status("Fetch data from API...", spinner="line"):
         sleep(2.5)
@@ -150,7 +151,10 @@ def chart(from_curr: str, to_curr: str, bk_date: int):
 
     from_date = date.today() - timedelta(days=bk_date)
     data = fetch_rates_by_date_range(
-        from_curr.upper(), to_curr.upper(), from_date.isoformat(), date.today().isoformat()
+        from_curr.upper(),
+        to_curr.upper(),
+        from_date.isoformat(),
+        date.today().isoformat(),
     )
 
     with console.status("Fetch data from API...", spinner="line"):
