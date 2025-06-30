@@ -2,9 +2,10 @@ from unittest.mock import MagicMock, patch
 
 import click
 import pytest
+from requests import RequestException
+
 from flazzy.api import (fetch_exchange_rates, fetch_list_currencies,
                         fetch_rates_by_date_range, fetch_rates_for_currency)
-from requests import RequestException
 
 
 @patch("flazzy.api.requests.get")

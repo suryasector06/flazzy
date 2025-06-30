@@ -74,10 +74,13 @@ def exchange(amount: float, from_curr: str, to_curr: str, to_date: str, swap: bo
     result = convert_currency(amount, from_curr.upper(), to_curr.upper(), rates)
 
     if swap:
-        swap_result = swap_currency(amount, from_curr.upper(), to_curr.upper(), rates)
+        swap_result = convert_currency(result, to_curr, from_curr, rates)
+
+        with console.status("Fetch data from API...", spinner="line"):
+            sleep(2.5)
 
         display_conversion(amount, from_curr, to_curr, result, to_date)
-        display_conversion(amount, to_curr, from_curr, swap_result, to_date)
+        display_conversion(result, to_curr, from_curr, swap_result, to_date)
 
         return
 
