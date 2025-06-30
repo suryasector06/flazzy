@@ -62,7 +62,7 @@ def display_conversion(
 
         console.print(
             Panel(
-                content, title_align="left", title="Swap Exchange", border_style="#847430"
+                content, title_align="left", title="Swap Exchange", border_style="green"
             )
         )
 
