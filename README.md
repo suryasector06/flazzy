@@ -4,7 +4,7 @@
 
 ---
 
-## 🔧 Features
+##  Features
 
 - Fetch real-time exchange rates from an external API
 - Convert between different currencies with ease
@@ -13,7 +13,7 @@
 
 ---
 
-## 📦 Installation
+##  Installation
 
 ### Using pip
 
@@ -29,7 +29,7 @@ pipx install flazzy
 
 ---
 
-## 🚀 Usage
+##  Usage
 
 ```bash
 flazzy [OPTIONS] COMMAND [ARGS]...
@@ -53,7 +53,7 @@ flazzy [OPTIONS] COMMAND [ARGS]...
 
 ---
 
-## 📘 Examples
+##  Examples
 
 ### List all available currencies
 
@@ -81,7 +81,7 @@ flazzy chart --from USD --to JPY
 
 ---
 
-##  🎥 CLI Demo
+##  CLI Demo
 
 [![asciicast](https://asciinema.org/a/pUTiGi8yKiWiPFIehZu7RpurO.svg)](https://asciinema.org/a/pUTiGi8yKiWiPFIehZu7RpurO)
 
@@ -89,7 +89,7 @@ This screencast shows how to use `flazzy` to convert currencies, list rates, and
 
 ---
 
-## 📄 License
+##  License
 
 This project is licensed under the **GNU Lesser General Public License v2.1 or later (LGPL-2.1-or-later)**.
 
@@ -97,7 +97,7 @@ See the `LICENSE` file for full license text.
 
 ---
 
-## ✨ Contributing
+##  Contributing
 
 Contributions, issues, and feature requests are welcome!
 
@@ -105,11 +105,11 @@ Contributions, issues, and feature requests are welcome!
 - Create a new branch for your changes
 - Submit a pull request
 
-💬 Feel free to open issues or discussions on [GitHub Repository](https://github.com/suryasector06/flazzy)
+ Feel free to open issues or discussions on [GitHub Repository](https://github.com/suryasector06/flazzy)
 
 ---
 
-## 🔗 Related Links
+##  Related Links
 
-- 📦 PyPI: [https://pypi.org/project/flazzy/](https://pypi.org/project/flazzy/)
-- 💻 Source Code: [https://github.com/suryacluster06/flazzy](https://github.com/suryasector06/flazzy)
+-  PyPI: [https://pypi.org/project/flazzy/](https://pypi.org/project/flazzy/)
+-  Source Code: [https://github.com/suryacluster06/flazzy](https://github.com/suryasector06/flazzy)
