@@ -7,7 +7,7 @@ from rich.spinner import Spinner
 
 from .api import (fetch_exchange_rates, fetch_list_currencies,
                   fetch_rates_by_date_range, fetch_rates_for_currency)
-from .converter import convert_currency, generate_exchange_pairs, swap_currency
+from .converter import convert_currency, generate_exchange_pairs
 from .plot import generate_and_save_currency_plot
 from .utils import (display_conversion, display_currencies,
                     display_currency_table)
