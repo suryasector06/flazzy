@@ -12,6 +12,8 @@ jobs:
   build:
     name: Test & Lint
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
 
     steps:
       - name: Checkout repo
@@ -46,6 +48,8 @@ jobs:
     name: Publish to PyPI
     needs: build
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     if: startsWith(github.ref, 'refs/tags/v')
 
     steps:
