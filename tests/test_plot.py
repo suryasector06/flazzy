@@ -2,6 +2,7 @@ from datetime import datetime, timedelta
 from unittest.mock import MagicMock, patch
 
 import pytest
+
 from flazzy.plot import generate_and_save_currency_plot
 
 
