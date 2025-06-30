@@ -1,24 +1,16 @@
-from time import sleep
 from datetime import date, timedelta
+from time import sleep
 
 import click
 from rich.console import Console
 from rich.spinner import Spinner
 
-from .plot import generate_and_save_currency_plot
-from .utils import (
-    display_conversion,
-    display_currencies,
-    display_currency_table,
-)
-
-from .api import (
-    fetch_exchange_rates,
-    fetch_list_currencies,
-    fetch_rates_by_date_range,
-    fetch_rates_for_currency,
-)
+from .api import (fetch_exchange_rates, fetch_list_currencies,
+                  fetch_rates_by_date_range, fetch_rates_for_currency)
 from .converter import convert_currency, generate_exchange_pairs, swap_currency
+from .plot import generate_and_save_currency_plot
+from .utils import (display_conversion, display_currencies,
+                    display_currency_table)
 
 console = Console()
 
@@ -69,7 +61,6 @@ def cli():
     default="latest",
     help="The date of the exchange rate (format: YYYY-MM-DD).",
 )
-
 @click.option("--swap", is_flag=True)
 def exchange(amount: float, from_curr: str, to_curr: str, to_date: str, swap: bool):
     """
@@ -160,7 +151,10 @@ def chart(from_curr: str, to_curr: str, bk_date: int):
 
     from_date = date.today() - timedelta(days=bk_date)
     data = fetch_rates_by_date_range(
-        from_curr.upper(), to_curr.upper(), from_date.isoformat(), date.today().isoformat()
+        from_curr.upper(),
+        to_curr.upper(),
+        from_date.isoformat(),
+        date.today().isoformat(),
     )
 
     with console.status("Fetch data from API...", spinner="line"):

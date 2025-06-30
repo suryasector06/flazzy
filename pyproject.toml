@@ -56,8 +56,8 @@ pyright = "^1.1.402"
 [tool.poetry.group.test.dependencies]
 pytest = "^8.4.1"
 
+
 [tool.pytest.ini_options]
 minversion = "7.5"
 addopts = "--tb=short"
 testpaths = ["test"]
-
