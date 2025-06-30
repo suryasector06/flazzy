@@ -18,7 +18,7 @@ from .api import (
     fetch_rates_by_date_range,
     fetch_rates_for_currency,
 )
-from .converter import convert_currency, generate_exchange_pairs
+from .converter import convert_currency, generate_exchange_pairs, swap_currency
 
 console = Console()
 
@@ -69,7 +69,9 @@ def cli():
     default="latest",
     help="The date of the exchange rate (format: YYYY-MM-DD).",
 )
-def exchange(amount: float, from_curr: str, to_curr: str, to_date: str):
+
+@click.option("--swap", is_flag=True)
+def exchange(amount: float, from_curr: str, to_curr: str, to_date: str, swap: bool):
     """
     Convert a specific amount from one currency to another using real-time exchange rates.
 
@@ -79,6 +81,14 @@ def exchange(amount: float, from_curr: str, to_curr: str, to_date: str):
 
     rates = fetch_exchange_rates(from_curr.upper(), to_curr.upper(), to_date)
     result = convert_currency(amount, from_curr.upper(), to_curr.upper(), rates)
+
+    if swap:
+        swap_result = swap_currency(amount, from_curr.upper(), to_curr.upper(), rates)
+
+        display_conversion(amount, from_curr, to_curr, result, to_date)
+        display_conversion(amount, to_curr, from_curr, swap_result, to_date)
+
+        return
 
     with console.status("Fetch data from API...", spinner="line"):
         sleep(2.5)
