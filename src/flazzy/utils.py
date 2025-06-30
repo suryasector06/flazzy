@@ -2,9 +2,13 @@ from datetime import date
 from typing import Optional
 
 from rich.console import Console
+from rich.panel import Panel
 from rich.table import Table
 
 console = Console()
+
+
+from rich.panel import Panel
 
 
 def display_currency_table(
@@ -13,14 +17,20 @@ def display_currency_table(
     if to_date == "latest":
         to_date = date.today().isoformat()
 
+    lines = []
+
     for from_currency, to_currency, rate in pairs:
-        console.print(
-            f"[bold cyan] 1.00"
-            f"[bold cyan]{from_currency.upper()}[/bold cyan] "
-            f"[bold white]→[/bold white] "
-            f"[bold green]{rate:.2f} {to_currency.upper()}[/bold green] "
-            f"in {to_date}"
+        line = (
+            f"[bold cyan]1.00 {from_currency.upper()}[/bold cyan] "
+            f"[white] → [/white] "
+            f"[bold green]{rate:>7} {to_currency.upper()}[/bold green]"
         )
+        lines.append(line)
+
+    content = "\n".join(lines)
+    console.print(
+        Panel(content, title_align="left", title=f"Currency Rates at {to_date}", border_style="blue")
+    )
 
 
 def display_conversion(
@@ -28,13 +38,47 @@ def display_conversion(
     from_curr: str,
     to_curr: str,
     result: float,
+    swap_result: Optional[float],
     to_date: Optional[str] = "latest",
 ):
     if to_date == "latest":
         to_date = date.today().isoformat()
 
+    if swap_result:
+        lines = []
+        lines.append(
+            f"[bold cyan]{amount:.2f} {from_curr.upper()}[/bold cyan] "
+            f"[white]→[/white] "
+            f"[bold green]{result:.2f} {to_curr.upper()}[/bold green] "
+            f"[dim]({to_date})[/dim]"
+        )
+        lines.append(
+            f"[bold cyan]{result:.2f} {to_curr.upper()}[/bold cyan] "
+            f"[white]→[/white] "
+            f"[bold green]{swap_result:.2f} {from_curr.upper()}[/bold green] "
+            f"[dim]({to_date})[/dim]"
+        )
+        content = "\n".join(lines)
+
+        console.print(
+            Panel(
+                content, title_align="left", title="Swap Exchange", border_style="#847430"
+            )
+        )
+
+        return
+
+    content = (
+        f"[bold cyan]{amount:.2f} {from_curr.upper()}[/bold cyan] "
+        f"[white]→[/white] "
+        f"[bold green]{result:.2f} {to_curr.upper()}[/bold green] "
+        f"[dim]({to_date})[/dim]"
+    )
+
     console.print(
-        f"[bold cyan]{amount:.2f} {from_curr.upper()}[/bold cyan] [bold white]→[/bold white] [bold green]{result:.2f} {to_curr.upper()}[/bold green] in {to_date}"
+        Panel(
+            content, title_align="left", title="Conversion Result", border_style="green"
+        )
     )
 
 
@@ -67,7 +111,18 @@ def smooth_rates(dates: list, rates: list, window: int):
 
 
 def display_currencies(data: dict):
-    for currency, namecurr in data.items():
-        console.print(
+    lines = []
+    for currency, namecurr in sorted(data.items()):
+        lines.append(
             f"[bold cyan]{currency}[/bold cyan]: [bold green]{namecurr}[/bold green]"
         )
+
+    content = "\n".join(lines)
+    console.print(
+        Panel(
+            content,
+            title_align="left",
+            title="Supported Currencies",
+            border_style="magenta",
+        )
+    )

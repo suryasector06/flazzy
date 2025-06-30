@@ -1,7 +1,7 @@
 from datetime import date, timedelta
 from time import sleep
 
-import click
+import rich_click as click
 from rich.console import Console
 from rich.spinner import Spinner
 
@@ -61,7 +61,7 @@ def cli():
     default="latest",
     help="The date of the exchange rate (format: YYYY-MM-DD).",
 )
-@click.option("--swap", is_flag=True)
+@click.option("--swap", is_flag=True, help="The option to reverse source and target currencies.")
 def exchange(amount: float, from_curr: str, to_curr: str, to_date: str, swap: bool):
     """
     Convert a specific amount from one currency to another using real-time exchange rates.
@@ -74,20 +74,19 @@ def exchange(amount: float, from_curr: str, to_curr: str, to_date: str, swap: bo
     result = convert_currency(amount, from_curr.upper(), to_curr.upper(), rates)
 
     if swap:
-        swap_result = convert_currency(result, to_curr, from_curr, rates)
+        swap_result = convert_currency(result, to_curr.upper(), from_curr.upper(), rates)
 
         with console.status("Fetch data from API...", spinner="line"):
             sleep(2.5)
 
-        display_conversion(amount, from_curr, to_curr, result, to_date)
-        display_conversion(result, to_curr, from_curr, swap_result, to_date)
+        display_conversion(amount, from_curr, to_curr, result, swap_result, to_date)
 
         return
 
     with console.status("Fetch data from API...", spinner="line"):
         sleep(2.5)
 
-    display_conversion(amount, from_curr, to_curr, result, to_date)
+    display_conversion(amount, from_curr, to_curr, result, None, to_date)
 
 
 @cli.command()
@@ -138,7 +137,7 @@ def rates(to_date: str, currency: str):
     "bk_date",
     type=int,
     required=True,
-    help="Number of days to look back from today to retrieve historical exchange rates (e.g., 30 means last 30 days).",
+    help="The number of days to look back (e.g., 30 = last 30 days)."
 )
 def chart(from_curr: str, to_curr: str, bk_date: int):
     """

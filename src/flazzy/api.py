@@ -1,7 +1,7 @@
 import os
 from typing import Optional
 
-import click
+import rich_click as click
 import requests
 
 
