@@ -16,7 +16,7 @@ console = Console()
 
 
 @click.group()
-@click.version_option("0.2.1", prog_name="Flazzy")
+@click.version_option("0.2.5", prog_name="Flazzy")
 def cli():
     """
     Currency CLI Application.
