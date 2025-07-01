@@ -79,16 +79,6 @@ flazzy rates --base IDR
 flazzy chart --from USD --to JPY
 ```
 
----
-
-##  CLI Demo
-
-[![asciicast](https://asciinema.org/a/pUTiGi8yKiWiPFIehZu7RpurO.svg)](https://asciinema.org/a/pUTiGi8yKiWiPFIehZu7RpurO)
-
-This screencast shows how to use `flazzy` to convert currencies, list rates, and view charts from the terminal.
-
----
-
 ##  License
 
 This project is licensed under the **GNU Lesser General Public License v2.1 or later (LGPL-2.1-or-later)**.
